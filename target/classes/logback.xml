@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<!-- trace-debug-info-warn-error -->
+	<property name="log.level" value="debug" />
+	<property name="log.maxHistory" value ="30" />
+	<property name="log.filepath" value="${catalina.base}/logs/webapps" />
+	<!-- 日志格式 -->
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n" />
+	<appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender" >
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+	</encoder>
+	</appender>
+	<appender name="debugLog" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+		<!-- 文件路径 -->
+		<file>${log.filepath}/debug.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<!-- 历史log打包文件名 -->
+			<fileNamePattern>${log.filepath}/debug/debug.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<maxHistory>${log.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<file class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</file>
+	</appender>
+	<appender name="infoLog" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+		<!-- 文件路径 -->
+		<file>${log.filepath}/info.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<!-- 历史log打包文件名 -->
+			<fileNamePattern>${log.filepath}/info/info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<maxHistory>${log.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<file class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</file>
+	</appender>
+	<appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+		<!-- 文件路径 -->
+		<file>${log.filepath}/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<!-- 历史log打包文件名 -->
+			<fileNamePattern>${log.filepath}/error/error.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<maxHistory>${log.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<file class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</file>
+	</appender>
+	<Logger name="com.csy.o2o" level="${log.level}" additivity="true" >
+		<appender-ref ref="debugLog" />
+		<appender-ref ref="infoLog" />
+		<appender-ref ref="errorLog"/>
+	</Logger>
+	<root level="info">
+		<appender-ref ref="consoleLog" />
+	</root>
+</configuration>
