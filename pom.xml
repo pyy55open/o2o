@@ -141,6 +141,13 @@
 			<artifactId>jedis</artifactId>
 			<version>2.9.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.penggle/kaptcha -->
+		<dependency>
+		    <groupId>com.github.penggle</groupId>
+		    <artifactId>kaptcha</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		
   </dependencies>
   <build>
     <finalName>o2o</finalName>

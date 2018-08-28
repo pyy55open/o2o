@@ -1,0 +1,13 @@
+2018-08-27 21:57:39.536 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id,shop_category_name,shop_category_desc,shop_category_img ,level,create_time,update_time,parent_id form tb_shop_category WHERE order by level desc 
+2018-08-27 21:57:39.693 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-08-27 21:58:45.219 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id,shop_category_name,shop_category_desc,shop_category_img ,level,create_time,update_time,parent_id form tb_shop_category order by level desc 
+2018-08-27 21:58:45.296 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-08-27 21:59:52.149 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id,shop_category_name,shop_category_desc,shop_category_img ,level,create_time,update_time,parent_id form tb_shop_category order by level DESC 
+2018-08-27 21:59:52.405 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-08-27 22:08:44.832 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id,shop_category_name,shop_category_desc,shop_category_img ,level,create_time,update_time,parent_id form tb_shop_category 
+2018-08-27 22:08:44.887 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-08-27 22:12:05.466 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id,shop_category_name,shop_category_desc,shop_category_img,level,create_time,update_time,parent_idformtb_shop_category 
+2018-08-27 22:12:05.735 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-08-27 22:12:55.158 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==>  Preparing: select shop_category_id,shop_category_name,shop_category_desc,shop_category_img,level,create_time,update_time,parent_id from tb_shop_category order by level desc 
+2018-08-27 22:12:55.436 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - ==> Parameters: 
+2018-08-27 22:12:55.634 [main] DEBUG com.csy.o2o.dao.ShopCategoryDao.queryShopCategory - <==      Total: 1

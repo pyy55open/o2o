@@ -5,9 +5,29 @@
     <mapper namespace="com.csy.o2o.dao.ShopDao">
     	<insert id="insertShop"  useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopid">
     		insert into tb_shop (owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr
-    		,phone,photo,level,create_time,update_time,enable_status,advice)
+    		,phone,shop_img,level,create_time,update_time,enable_status,advice)
     		values
     		(#{ower.userid},#{area.areaid},#{shopCategory.shopCategoryid},#{shopname},#{shopdesc},#{shopaddr}
     		,#{phone},#{photo},#{level},#{createTime},#{updateTime},#{enableStatus},#{advice})
     	</insert>
+    	
+    	<update id="updateShop" parameterType="com.csy.o2o.entity.Shop">
+    		update tb_shop
+    		<set>
+    			<if test="shopname != null">shop_name =#{shopname},</if>
+    			<if test="shopdesc != null">shop_desc =#{shopdesc},</if>
+    			<if test="shopaddr != null">shop_addr =#{shopaddr},</if>
+    			<if test="phone != null">phone =#{phone},</if>
+    			<if test="photo != null">shop_img =#{photo},</if>
+    			<if test="level != null">level =#{level},</if>
+    			<if test="createTime != null">create_Time =#{createTime},</if>
+    			<if test="updateTime != null">update_Time =#{updateTime},</if>
+    			<if test="enableStatus != null">enable_Status =#{enableStatus},</if>
+    			<if test="advice != null">advice =#{advice},</if>
+    			<if test="area != null">area_id =#{area.areaid},</if>
+    			<if test="ower != null">owner_id =#{ower.userid},</if>
+    			<if test="shopCategory != null">shop_Category_id =#{shopCategory.shopCategoryid}</if>
+    		</set>
+    		where shop_id=#{shopid}
+    	</update>
     </mapper>

@@ -1,5 +1,11 @@
 package com.csy.o2o.dao;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+
+import org.junit.Ignore;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.csy.o2o.BaseTest;
@@ -13,6 +19,8 @@ public class ShopDaoTest extends BaseTest{
 	@Autowired
 	ShopDao shopDao;
 	
+	@Test
+	@Ignore
 	public void testInsertShop(){
 		Shop shop = new Shop();
 		PersonInfo owner = new PersonInfo();
@@ -21,5 +29,30 @@ public class ShopDaoTest extends BaseTest{
 		owner.setUserid(1L);
 		area.setAreaid(1);
 		shopCategory.setShopCategoryid(1L);
+		shop.setShopCategory(shopCategory);
+		shop.setArea(area);
+		shop.setOwer(owner);
+		shop.setShopname("玩具超市");
+		shop.setPhone("138000000");
+		shop.setShopaddr("xxx路20号");
+		shop.setShopdesc("test");
+		shop.setEnableStatus(1);
+		shop.setCreateTime(new Date());
+		shop.setUpdateTime(new Date());
+		int i = shopDao.insertShop(shop);
+		assertEquals(i,1);
+	}
+	
+	@Test
+	public void testUpdateShop(){
+		Shop shop = new Shop();
+		shop.setShopid(2L);
+		
+		shop.setShopname("工薪超市");
+		
+		shop.setCreateTime(new Date());
+		shop.setUpdateTime(new Date());
+		int i = shopDao.updateShop(shop);
+		assertEquals(i,1);
 	}
 }
