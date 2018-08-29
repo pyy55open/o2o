@@ -1,4 +1,4 @@
-package com.csy.o2o.web.shopAdmin;
+package com.csy.o2o.web.shopadmin;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +35,7 @@ import com.csy.o2o.util.KaptchaUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
-@RequestMapping("/shopadmin")
+@RequestMapping(value="/shopadmin",method=RequestMethod.GET)
 public class ShopManagerController {
 
 	@Autowired

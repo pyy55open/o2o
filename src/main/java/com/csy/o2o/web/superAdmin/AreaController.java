@@ -1,4 +1,4 @@
-package com.csy.o2o.web.superAdmin;
+package com.csy.o2o.web.superadmin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
