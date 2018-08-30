@@ -4,6 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="com.csy.o2o.dao.AreaDao">
 		<select id="queryArea" resultType="com.csy.o2o.entity.Area">
-			select * from tb_area
+			select area_id,area_name,level,create_time,update_time from tb_area
 		</select>
 	</mapper>

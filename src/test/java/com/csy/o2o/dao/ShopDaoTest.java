@@ -20,6 +20,12 @@ public class ShopDaoTest extends BaseTest{
 	ShopDao shopDao;
 	
 	@Test
+	public void testQueryByid(){
+		Shop shop = shopDao.queryByShopid(1L);
+		assertEquals("餐饮服务",shop.getShopCategory().getShopCategoryname());
+	}
+	
+	@Test
 	@Ignore
 	public void testInsertShop(){
 		Shop shop = new Shop();
@@ -44,6 +50,7 @@ public class ShopDaoTest extends BaseTest{
 	}
 	
 	@Test
+	@Ignore
 	public void testUpdateShop(){
 		Shop shop = new Shop();
 		shop.setShopid(2L);

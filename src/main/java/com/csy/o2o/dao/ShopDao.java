@@ -5,6 +5,10 @@ import com.csy.o2o.entity.Shop;
 public interface ShopDao {
 
 	/**
+	 * 根据店铺id查店铺信息
+	 */
+	Shop queryByShopid(Long shopid);
+	/**
 	 * 新增(注册)店铺
 	 * @param shop
 	 * @return

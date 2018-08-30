@@ -2,8 +2,8 @@
  * 
  */
 $(function(){
-	var initUrl = 'getshopinitinfo';
-	var registerShopUrl='o2o/shop/addShop';
+	var initUrl = '/o2o/shopadmin/getshopinitinfo';
+	var registerShopUrl='/o2o/shop/addShop';
 	getShopInitInfo();
 	function getShopInitInfo(){
 		$.getJSON(initUrl,function(data){
@@ -11,12 +11,12 @@ $(function(){
 				var tempHtml="";
 				var tempAreaHtml="";
 				data.shopCategoryList.map(function(item,index){
-					tempHtml+="<option data-id ='"+item.shopCategoryId+"'>"
-					+item.shopCategoryName+"</option>";
+					tempHtml+="<option data-id ='"+item.shopCategoryid+"'>"
+					+item.shopCategoryname+"</option>";
 				});
 				data.areaList.map(function(item,index){
-					tempAreaHtml+="<option data-id ='"+item.areaId+"'>"
-					+item.areaName+"</option>";
+					tempAreaHtml+="<option data-id ='"+item.areaid+"'>"
+					+item.areaname+"</option>";
 				});
 				$("#shop-category").html(tempHtml);
 				$("#area").html(tempAreaHtml);
