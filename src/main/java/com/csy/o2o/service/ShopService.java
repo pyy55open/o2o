@@ -8,5 +8,9 @@ import com.csy.o2o.entity.Shop;
 
 public interface ShopService {
 
+	Shop getByShopId(Long shopid);
+	
+	ShopException modifyShop(Shop shop,InputStream fileIS,String fileName);
+	
 	ShopException addShop(Shop shop,InputStream fileIS,String fileName);
 }

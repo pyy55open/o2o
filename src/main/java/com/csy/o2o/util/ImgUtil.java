@@ -88,6 +88,19 @@ public class ImgUtil {
 		
 		return filename+i;
 	}
+	
+	public static void deleteFile(String filePath){
+		File fileOrpath = new File(PathUtil.getImgBasePath()+filePath);
+		if(!fileOrpath.exists()){
+			if(fileOrpath.isDirectory()){
+				File file[] = fileOrpath.listFiles();
+				for (int i = 0; i < file.length; i++) {
+					file[i].delete();
+				}
+			}
+			fileOrpath.delete();
+		}
+	}
 
 	public static void main(String[] args) throws IOException {
 		Thumbnails.of(new File("E:/scar.jpg")).size(200, 200)
