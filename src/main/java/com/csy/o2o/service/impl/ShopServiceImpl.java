@@ -3,18 +3,21 @@ package com.csy.o2o.service.impl;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.csy.o2o.dao.ShopDao;
+import com.csy.o2o.dto.ImgHolder;
 import com.csy.o2o.dto.ShopException;
 import com.csy.o2o.entity.Shop;
 import com.csy.o2o.enu.ShopEnum;
 import com.csy.o2o.exception.ShopOperationException;
 import com.csy.o2o.service.ShopService;
 import com.csy.o2o.util.ImgUtil;
+import com.csy.o2o.util.PageCalculate;
 import com.csy.o2o.util.PathUtil;
 
 @Service
@@ -25,7 +28,7 @@ public class ShopServiceImpl implements ShopService{
 	
 	@Override
 	@Transactional
-	public ShopException addShop(Shop shop, InputStream fileIS,String fileName) {
+	public ShopException addShop(Shop shop, ImgHolder ih) {
 		if(shop == null){
 			return new ShopException(ShopEnum.NULL_SHOP);
 		}
@@ -37,10 +40,10 @@ public class ShopServiceImpl implements ShopService{
 			if(i <= 0){
 				throw new ShopOperationException("店铺创建失败。");
 			}else{
-				if(fileIS != null){
+				if(ih.getInputStream() != null){
 					try{
 						String dest = PathUtil.getShopImgPath(shop.getShopid());
-						String imgAddr = ImgUtil.thumbnailImg(fileIS, fileName,dest);
+						String imgAddr = ImgUtil.thumbnailImg(ih,dest);
 						shop.setPhoto(imgAddr);
 					}catch(Exception e){
 						throw new RuntimeException("====添加图片失败"+e.getMessage());
@@ -63,19 +66,19 @@ public class ShopServiceImpl implements ShopService{
 	}
 
 	@Override
-	public ShopException modifyShop(Shop shop,InputStream is,String fileName) {
+	public ShopException modifyShop(Shop shop,ImgHolder ih) {
 		if(shop==null||shop.getShopid()==null){
 			return new ShopException(ShopEnum.NULL_SHOP);
 		}else{
 			//1是否需要处理图片
-			if(is!=null){
+			if(ih.getInputStream()!=null){
 				Shop newShop = shopDao.queryByShopid(shop.getShopid());
 				if(newShop.getPhoto()!=null){
 					ImgUtil.deleteFile(shop.getPhoto());
 				}
 				//工具类处理图片，获取图片保存地址
 				String dest = PathUtil.getShopImgPath(shop.getShopid());
-				String imgAddr = ImgUtil.thumbnailImg(is, fileName,dest);
+				String imgAddr = ImgUtil.thumbnailImg(ih,dest);
 				newShop.setPhoto(imgAddr);
 			}
 			//2更新店铺信息
@@ -88,6 +91,22 @@ public class ShopServiceImpl implements ShopService{
 				return new ShopException(ShopEnum.INNER_ERROR);
 			}
 		}
+	}
+
+	@Override
+	public ShopException getShopList(Shop shop, int pageIndex, int pageSize) {
+		int rowIndex = PageCalculate.calculateRowIndex(pageIndex, pageSize);
+		List<Shop> shop_list = shopDao.queryShopList(shop, rowIndex, pageSize);
+		int count = shopDao.queryShopCount(shop);
+		ShopException shopException = new ShopException();
+		if(shop_list != null){
+			shopException.setShoplist(shop_list);
+			shopException.setCount(count);
+		}else{
+			shopException.setState(ShopEnum.INNER_ERROR.getState());
+		}
+		
+		return shopException;
 	}
 	
 	

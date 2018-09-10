@@ -11,7 +11,7 @@
 		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
 		<!-- 是否有边框 -->
 		<init-param>
-			<param-name>kaptcha-bord</param-name>
+			<param-name>kaptcha-border</param-name>
 			<param-value>no</param-value>
 		</init-param>
 		<!-- 字体颜色 -->
@@ -36,7 +36,7 @@
 		</init-param>
 		<!-- 字体大小 -->
 		<init-param>
-			<param-name>kaptcha.textproducer.font。size</param-name>
+			<param-name>kaptcha.textproducer.font.size</param-name>
 			<param-value>43</param-value>
 		</init-param>
 		<!-- 干扰线的颜色 -->

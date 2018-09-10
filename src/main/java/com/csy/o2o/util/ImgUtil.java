@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.csy.o2o.dto.ImgHolder;
+
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 
@@ -39,11 +41,11 @@ public class ImgUtil {
 		return file;
 	}
 	
-	public static String thumbnailImg(InputStream fileIS,String fileName,String target){
+	public static String thumbnailImg(ImgHolder ih,String target){
 		//新文件随机名称
 		String realFilename = getRealFileName();
 		//新文件的扩展名
-		String extension = getExtension(fileName);
+		String extension = getExtension(ih.getName());
 		//路径可能不存在 创建文件路径   
 		makeDirPath(target);
 		//文件保存路径
@@ -52,7 +54,30 @@ public class ImgUtil {
 		File targetFile = new File(PathUtil.getImgBasePath()+filePath);
 		log.debug("======文件全路径："+ PathUtil.getImgBasePath()+filePath+"==========");
 		try{
-		Thumbnails.of(fileIS).size(200, 200)
+		Thumbnails.of(ih.getInputStream()).size(200, 200)
+		.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath+"/timg.jpg")), 0.25f)
+		.outputQuality(0.8f).toFile(targetFile);
+		}catch(IOException e){
+			log.error(e.toString());
+			e.printStackTrace();
+		}
+		return filePath;
+	}
+	
+	public static String thumbnailDetailImg(ImgHolder ih,String target){
+		//新文件随机名称
+		String realFilename = getRealFileName();
+		//新文件的扩展名
+		String extension = getExtension(ih.getName());
+		//路径可能不存在 创建文件路径   
+		makeDirPath(target);
+		//文件保存路径
+		String filePath = target + realFilename + extension;
+		log.debug("======文件保存路径 ："+ filePath +"=========");
+		File targetFile = new File(PathUtil.getImgBasePath()+filePath);
+		log.debug("======文件全路径："+ PathUtil.getImgBasePath()+filePath+"==========");
+		try{
+		Thumbnails.of(ih.getInputStream()).size(337, 640)
 		.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath+"/timg.jpg")), 0.25f)
 		.outputQuality(0.8f).toFile(targetFile);
 		}catch(IOException e){

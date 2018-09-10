@@ -3,6 +3,7 @@ package com.csy.o2o.dao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,6 +21,19 @@ public class ShopDaoTest extends BaseTest{
 	ShopDao shopDao;
 	
 	@Test
+	public void testQueryShopList(){
+		Shop shop = new Shop();
+		ShopCategory shopCategory = new ShopCategory();
+		shopCategory.setShopCategoryid(1L);
+		shop.setShopCategory(shopCategory);
+		List<Shop> shopList = shopDao.queryShopList(shop, 0, 5);
+		List<Shop> shopList_ = shopDao.queryShopList(shop, 0, 2);
+		System.out.println("店铺大小size:"+shopList.size());
+		System.out.println("另店铺大小size:"+shopList_.size());
+	}
+	
+	@Test
+	@Ignore
 	public void testQueryByid(){
 		Shop shop = shopDao.queryByShopid(1L);
 		assertEquals("餐饮服务",shop.getShopCategory().getShopCategoryname());

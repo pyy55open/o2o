@@ -57,6 +57,82 @@
 			s.shop_id = #{shopid}
     	</select>
     	
+    	<select id="queryShopList" resultMap="shopMap">
+    		SELECT
+			s.shop_id,
+			s.shop_name,
+			s.shop_desc,
+			s.shop_addr,
+			s.phone,
+			s.shop_img,
+			s.level,
+			s.create_time,
+			s.update_time,
+			s.enable_status,
+			s.advice,
+			a.area_id,
+			a.area_name,
+			sc.shop_category_id,
+			sc.shop_category_name
+    		from 
+    		tb_shop s
+    		,tb_shop_category sc
+    		,tb_area a
+    		<where>
+    			<if test="shopCondition.shopCategory!=null and shopCondition.shopCategory.shopCategoryid!=null">
+    				and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryid}
+    			</if>
+    			<if test="shopCondition.area!=null and shopCondition.area.areaid!=null">
+    				and s.area_id = #{shopCondition.area.areaid}
+    			</if>
+    			<if test="shopCondition.ower!=null and shopCondition.ower.userid!=null">
+    				and s.owner_id = #{shopCondition.ower.userid}
+    			</if>
+    			<if test="shopCondition.shopname != null">
+    				and s.shop_name = #{shopCondition.shopname}
+    			</if>
+    			<if test="shopCondition.enableStatus != null">
+    				and s.enable_status = #{shopCondition.enableStatus}
+    			</if>
+    		AND
+    		s.area_id=a.area_id
+			AND
+			s.shop_category_id = sc.shop_category_id
+    		</where>
+    		order by s.level desc
+    		limit #{rowIndex},#{pageSize}
+    	</select>
+    		
+    	<select id="queryShopCount" resultType="int">
+    		select
+    		count(1)
+    		from 
+    		tb_shop s
+    		,tb_shop_category sc
+    		,tb_area a
+    		<where>
+    			<if test="shopCondition.shopCategory!=null and shopCondition.shopCategory.shopCategoryid!=null">
+    				and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryid}
+    			</if>
+    			<if test="shopCondition.area!=null and shopCondition.area.areaid!=null">
+    				and s.area_id = #{shopCondition.area.areaid}
+    			</if>
+    			<if test="shopCondition.ower!=null and shopCondition.ower.userid!=null">
+    				and s.owner_id = #{shopCondition.ower.userid}
+    			</if>
+    			<if test="shopCondition.shopname != null">
+    				and s.shop_name = #{shopCondition.shopname}
+    			</if>
+    			<if test="shopCondition.enableStatus != null">
+    				and s.enable_status = #{shopCondition.enableStatus}
+    			</if>
+    		AND
+    		s.area_id=a.area_id
+			AND
+			s.shop_category_id = sc.shop_category_id
+    		</where>
+    	</select>
+    	
     	<insert id="insertShop"  useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopid">
     		insert into tb_shop (owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr
     		,phone,shop_img,level,create_time,update_time,enable_status,advice)

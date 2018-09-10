@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.csy.o2o.dao.ProductDao">
+    	<resultMap type="com.csy.o2o.entity.Product" id="productMap">
+    		<id column="product_id" property="productid"/>
+    		<result column="product_name" property="productname" />
+			<result column="product_desc" property="productdesc" />
+			<result column="product_img" property="imgAddr" />
+			<result column="normal_price" property="normalprice" />
+			<result column="promotion_price" property="promotionprice" />
+			<result column="level" property="level" />
+			<result column="create_time" property="createTime" />
+			<result column="update_time" property="updateTime" />
+			<result column="enable_status" property="enableStatus" />
+    		<association property="productCategory" column="product_category_id"  javaType="com.csy.o2o.entity.ProductCategory">
+    			<id column="product_category_id" property="productcategoryid"/>
+    			<result column="product_category_name" property="productcategoryname"/>
+    		</association>
+    		<association property="shop" column="shop_id"  javaType="com.csy.o2o.entity.Shop">
+    			<id column="shop_id" property="shopid"/>
+    			<result column="shop_name" property="shopname"/>
+    		</association>
+    		<collection property="productImgList" column="product_id" ofType="com.csy.o2o.entity.ProductImg">
+				<id column="product_img_id" property="productImgid" />
+				<result column="img_addr" property="imgAddr" />
+				<result column="img_desc" property="imgDesc" />
+				<result column="level" property="level" />
+				<result column="create_time" property="createTime" />
+				<result column="product_id" property="productid" />
+			</collection>
+    	</resultMap>
+    	
+    	<insert id="addProduct" parameterType="com.csy.o2o.entity.Product"
+			useGeneratedKeys="true" keyProperty="productid" keyColumn="product_id">
+			INSERT INTO
+			tb_product(product_name,product_desc,img_addr,
+			normal_price,promotion_price,level,create_time,
+			update_time,enable_status,product_category_id,
+			shop_id)
+			VALUES
+			(#{productname},#{productdesc},#{imgAddr},
+			#{normalprice},#{promotionprice},#{level},#{createTime},
+			#{updateTime},#{enableStatus},#{productCategory.productCategoryid},
+			#{shop.shopid})
+		</insert>
+    </mapper>

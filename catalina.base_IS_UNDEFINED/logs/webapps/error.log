@@ -1,5 +1,36 @@
-2018-08-30 13:51:13.751 [main] DEBUG com.csy.o2o.dao.ShopDao.queryByShopid - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.photo, s.level, s.create_time, s.update_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name from tb_shop s ,tb_shop_category sc ,tb_area a WHERE s.area_id=a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
-2018-08-30 13:51:13.870 [main] DEBUG com.csy.o2o.dao.ShopDao.queryByShopid - ==> Parameters: 1(Long)
-2018-08-30 13:51:56.318 [main] DEBUG com.csy.o2o.dao.ShopDao.queryByShopid - ==>  Preparing: SELECT s.shop_id, s.shop_name, s.shop_desc, s.shop_addr, s.phone, s.shop_img, s.level, s.create_time, s.update_time, s.enable_status, s.advice, a.area_id, a.area_name, sc.shop_category_id, sc.shop_category_name from tb_shop s ,tb_shop_category sc ,tb_area a WHERE s.area_id=a.area_id AND s.shop_category_id = sc.shop_category_id AND s.shop_id = ? 
-2018-08-30 13:51:56.371 [main] DEBUG com.csy.o2o.dao.ShopDao.queryByShopid - ==> Parameters: 1(Long)
-2018-08-30 13:51:56.392 [main] DEBUG com.csy.o2o.dao.ShopDao.queryByShopid - <==      Total: 1
+2018-09-10 16:18:03.161 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018181090880.png=========
+2018-09-10 16:18:03.182 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018181090880.png==========
+2018-09-10 16:18:05.923 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
+2018-09-10 16:18:06.044 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 测试商品添加service(String), null, \upload\2\2018181090880.png(String), null, null, null, 2018-09-10 16:18:03.149(Timestamp), 2018-09-10 16:18:03.149(Timestamp), 1(Integer), 1(Long), 2(Long)
+2018-09-10 16:18:06.131 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - <==    Updates: 1
+2018-09-10 16:18:06.220 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018181049426.jpg=========
+2018-09-10 16:18:06.221 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018181049426.jpg==========
+2018-09-10 16:18:06.438 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018181030079.jpg=========
+2018-09-10 16:18:06.438 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018181030079.jpg==========
+2018-09-10 16:18:06.544 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
+2018-09-10 16:18:06.546 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018181049426.jpg(String), null, null, 2018-09-10 16:18:06.438(Timestamp), 5(Long), \upload\2\2018181030079.jpg(String), null, null, 2018-09-10 16:18:06.495(Timestamp), 5(Long)
+2018-09-10 16:18:06.587 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
+2018-09-10 16:21:20.121 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018211090200.png=========
+2018-09-10 16:21:20.124 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018211090200.png==========
+2018-09-10 16:21:21.040 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
+2018-09-10 16:21:21.284 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 测试商品添加service(String), null, \upload\2\2018211090200.png(String), null, null, null, 2018-09-10 16:21:20.116(Timestamp), 2018-09-10 16:21:20.116(Timestamp), 1(Integer), 1(Long), 2(Long)
+2018-09-10 16:21:21.293 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - <==    Updates: 1
+2018-09-10 16:21:21.331 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018211064687.jpg=========
+2018-09-10 16:21:21.333 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018211064687.jpg==========
+2018-09-10 16:21:21.908 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018211095470.jpg=========
+2018-09-10 16:21:21.909 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018211095470.jpg==========
+2018-09-10 16:21:22.005 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
+2018-09-10 16:21:22.006 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018211064687.jpg(String), null, null, 2018-09-10 16:21:21.908(Timestamp), 6(Long), \upload\2\2018211095470.jpg(String), null, null, 2018-09-10 16:21:21.98(Timestamp), 6(Long)
+2018-09-10 16:21:22.008 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
+2018-09-10 16:23:03.320 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018231073869.png=========
+2018-09-10 16:23:03.324 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018231073869.png==========
+2018-09-10 16:23:03.712 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
+2018-09-10 16:23:03.773 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 测试商品添加service(String), null, \upload\2\2018231073869.png(String), null, null, null, 2018-09-10 16:23:03.311(Timestamp), 2018-09-10 16:23:03.311(Timestamp), 1(Integer), 1(Long), 2(Long)
+2018-09-10 16:23:03.777 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - <==    Updates: 1
+2018-09-10 16:23:03.790 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018231068117.jpg=========
+2018-09-10 16:23:03.792 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018231068117.jpg==========
+2018-09-10 16:23:03.950 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018231081659.jpg=========
+2018-09-10 16:23:03.951 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018231081659.jpg==========
+2018-09-10 16:23:04.049 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
+2018-09-10 16:23:04.051 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018231068117.jpg(String), null, null, 2018-09-10 16:23:03.95(Timestamp), 7(Long), \upload\2\2018231081659.jpg(String), null, null, 2018-09-10 16:23:04.02(Timestamp), 7(Long)
+2018-09-10 16:23:04.054 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2

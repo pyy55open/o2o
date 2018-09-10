@@ -6,11 +6,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.csy.o2o.BaseTest;
+import com.csy.o2o.dto.ImgHolder;
 import com.csy.o2o.dto.ShopException;
 import com.csy.o2o.entity.Area;
 import com.csy.o2o.entity.PersonInfo;
@@ -24,6 +27,18 @@ public class ShopServiceTest extends BaseTest{
 	ShopService shopService;
 	
 	@Test
+	public void testGetShopList(){
+		Shop shop = new Shop();
+		ShopCategory shopCategory = new ShopCategory();
+		shopCategory.setShopCategoryid(1L);
+		shop.setShopCategory(shopCategory);
+		ShopException shopException = shopService.getShopList(shop, 0, 5);
+		System.out.println("店铺大小size:"+shopException.getShoplist().size());
+		System.out.println("店铺大小size:"+shopException.getCount());
+	}
+	
+	@Test
+	@Ignore
 	public void testAddShop() throws FileNotFoundException{
 		Shop shop = new Shop();
 		PersonInfo owner = new PersonInfo();
@@ -41,7 +56,8 @@ public class ShopServiceTest extends BaseTest{
 		shop.setShopdesc("test");
 		File file = new File("E:/scar.jpg");
 		InputStream fileIS = new FileInputStream(file);
-		ShopException shopException = shopService.addShop(shop,fileIS,file.getName());
+		ImgHolder ih = new ImgHolder(file.getName(), fileIS);
+		ShopException shopException = shopService.addShop(shop,ih);
 		assertEquals(ShopEnum.CHECK.getState(),shopException.getState());
 	}
 }
