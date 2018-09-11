@@ -34,3 +34,22 @@
 2018-09-10 16:23:04.049 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
 2018-09-10 16:23:04.051 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018231068117.jpg(String), null, null, 2018-09-10 16:23:03.95(Timestamp), 7(Long), \upload\2\2018231081659.jpg(String), null, null, 2018-09-10 16:23:04.02(Timestamp), 7(Long)
 2018-09-10 16:23:04.054 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
+2018-09-11 13:31:19.667 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
+2018-09-11 13:31:19.732 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 商品1(String), null, null, 1(String), 1(String), null, null, null, 1(Integer), 1(Long), 2(Long)
+2018-09-11 13:31:19.840 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id, from tb_product where product_id=? 
+2018-09-11 13:31:19.841 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:33:49.017 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
+2018-09-11 13:33:49.074 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 商品1(String), null, null, 1(String), 1(String), null, null, null, 1(Integer), 1(Long), 2(Long)
+2018-09-11 13:33:49.173 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id, from tb_product where product_id= ? 
+2018-09-11 13:33:49.174 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:34:33.829 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id, from tb_product where product_id= ? 
+2018-09-11 13:34:33.892 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:35:42.774 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
+2018-09-11 13:35:42.845 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:37:02.350 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
+2018-09-11 13:37:02.418 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:38:00.748 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
+2018-09-11 13:38:00.798 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:40:10.858 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
+2018-09-11 13:40:10.908 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
+2018-09-11 13:40:10.930 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - <==      Total: 1

@@ -19,7 +19,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.csy.o2o.dto.ImgHolder;
 import com.csy.o2o.dto.ProductExcution;
 import com.csy.o2o.entity.Product;
+import com.csy.o2o.entity.ProductCategory;
 import com.csy.o2o.entity.Shop;
+import com.csy.o2o.service.ProductCategoryService;
 import com.csy.o2o.service.ProductService;
 import com.csy.o2o.util.HttpServletRequestUtil;
 import com.csy.o2o.util.KaptchaUtil;
@@ -31,6 +33,9 @@ public class ProductManagerController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	ProductCategoryService productCategoryService;
 	
 	private final int imgMaxCount = 6;
 	
@@ -100,6 +105,52 @@ public class ProductManagerController {
 		}else{
 			reMap.put("success", false);
 			reMap.put("msg","请填写商品信息。");
+		}
+		return reMap;
+	}
+	
+	@RequestMapping(value="/getproductlist",method=RequestMethod.GET)
+	public Map<String, Object> getProductList(HttpServletRequest request){
+		Map<String, Object> reMap = new HashMap<String,Object>();
+		Product product = new Product();
+		Shop shop = new Shop();
+		shop.setShopid(2L);
+		product.setShop(shop);
+		try{
+			ProductExcution productExcution = productService.queryProductOfShop(product, 0, 100);
+			if(productExcution!=null && productExcution.getProductlist().size()>0){
+				reMap.put("productList", productExcution.getProductlist());
+				reMap.put("success", true);
+			}else{
+				reMap.put("success", true);
+				reMap.put("productList", productExcution.getProductlist());
+				reMap.put("msg", "该店铺没有商品");
+			}
+		}catch(Exception e){
+			reMap.put("success", false);
+			reMap.put("msg", "获取商品列表失败:"+e.getMessage());
+		}
+		return reMap;
+	}
+	
+	public Map<String, Object> getProductByID(HttpServletRequest request){
+		Map<String, Object> reMap = new HashMap<String,Object>();
+		Long productID = Long.valueOf(request.getParameter("productID"));
+		if(productID>-1){
+			try{
+				Product product = productService.queryByProductID(productID);
+				Shop shop = (Shop) request.getSession().getAttribute("currentShop");
+				List<ProductCategory> pcList = productCategoryService.getProductCategoryList(shop.getShopid());
+				reMap.put("pcList", pcList);
+				reMap.put("product", product);
+				reMap.put("success", true);
+			}catch(Exception e){
+				reMap.put("success", false);
+				reMap.put("msg", "查询商品信息失败:"+e.getMessage());
+			}
+		}else{
+			reMap.put("success", false);
+			reMap.put("msg", "未查到相关商品信息。");
 		}
 		return reMap;
 	}

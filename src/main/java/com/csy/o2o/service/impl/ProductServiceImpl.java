@@ -18,6 +18,7 @@ import com.csy.o2o.enu.ProductStateEnum;
 import com.csy.o2o.exception.ProductOperationException;
 import com.csy.o2o.service.ProductService;
 import com.csy.o2o.util.ImgUtil;
+import com.csy.o2o.util.PageCalculate;
 import com.csy.o2o.util.PathUtil;
 
 @Service
@@ -91,6 +92,65 @@ public class ProductServiceImpl implements ProductService{
 			}catch(Exception e){
 				throw new ProductOperationException("添加商品详情图失败:"+e.getMessage());
 			}
+		}
+	}
+
+	@Override
+	public Product queryByProductID(Long productID) {
+		return productDao.queryByProductID(productID);
+	}
+
+	@Override
+	public ProductExcution queryProductOfShop(Product product,int pageIndex,int pageSize) {
+		// TODO Auto-generated method stub
+		int rowIndex = PageCalculate.calculateRowIndex(pageIndex, pageSize);
+		List<Product> productsList = productDao.queryProductList(product, rowIndex, pageSize);
+		int count =productDao.quertCountOfProduct(product);
+		ProductExcution productExcution = new ProductExcution();
+		if(productsList!=null){
+			productExcution.setProductlist(productsList);
+			productExcution.setCount(count);
+		}else{
+			productExcution.setState(ProductStateEnum.EMPTY_LIST.getState());
+		}
+		return productExcution;
+	}
+
+	@Override
+	public ProductExcution modifyProduct(Product product, ImgHolder ih, List<ImgHolder> ihList)
+			throws ProductOperationException {
+		if(product != null){
+			product.setCreateTime(new Date());
+			product.setUpdateTime(new Date());
+			if(ih.getInputStream() != null){
+				if(product.getImgAddr()!=null){//商品原缩略图删除
+					ImgUtil.deleteFile(product.getImgAddr());
+				}
+				String dest = PathUtil.getShopImgPath(product.getShop().getShopid());
+				String imgAddr=ImgUtil.thumbnailImg(ih, dest);
+				product.setImgAddr(imgAddr);
+				//处理商品详情图  1删  2换新
+				List<ProductImg> piList = productImgDao.queryProductImgList(product.getProductid());
+				if(piList!=null&&piList.size()>0){//如果有详情图记录，循环删
+					for (int i = 0; i < piList.size(); i++) {
+						ImgUtil.deleteFile(piList.get(i).getImgAddr());
+					}
+				}
+				if(ihList!=null && ihList.size()>0){//如果有图片
+					addProductImgList(product, ihList);
+				}else{
+					return new ProductExcution(ProductStateEnum.INNER_ERROR);
+				}
+				int num = productDao.addProduct(product);
+				if(num <=0){
+					return new ProductExcution(ProductStateEnum.INNER_ERROR);
+				}
+				return new ProductExcution(ProductStateEnum.SUCCESS, product);
+			}else{
+				return new ProductExcution(ProductStateEnum.INNER_ERROR);
+			}
+		}else{
+			return new ProductExcution(ProductStateEnum.EMPTY_LIST);
 		}
 	}
 

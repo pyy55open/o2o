@@ -2,9 +2,8 @@ package com.csy.o2o.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.csy.o2o.BaseTest;
@@ -12,13 +11,14 @@ import com.csy.o2o.entity.Product;
 import com.csy.o2o.entity.ProductCategory;
 import com.csy.o2o.entity.Shop;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
 public class ProductDaoTest extends BaseTest{
 
 	@Autowired
 	ProductDao productDao;
 	
 	@Test
+	@Ignore
 	public void testAinsertProduct(){
 		Product p1 = new Product();
 		Shop shop = new Shop();
@@ -44,5 +44,11 @@ public class ProductDaoTest extends BaseTest{
 		int j = productDao.addProduct(p2);
 		assertEquals(1,i);
 		assertEquals(1,j);
+	}
+	
+	@Test
+	public void testQueryByProductID(){
+		Product product =productDao.queryByProductID(1L);
+		assertEquals("哈哈",product.getProductname());
 	}
 }

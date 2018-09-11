@@ -45,4 +45,90 @@
 			#{updateTime},#{enableStatus},#{productCategory.productCategoryid},
 			#{shop.shopid})
 		</insert>
+		
+		<select id="queryByProductID" resultMap="productMap" parameterType="Long">
+			select p.product_id,p.product_name,p.product_desc,p.img_addr,p.normal_price,p.promotion_price,p.level
+			,p.create_time,p.update_time,p.enable_status,p.product_category_id,p.shop_id,pi.product_img_id
+			,pi.img_addr AS detail_img
+			,pi.img_desc
+			,pi.level as imgLevel
+			,pi.create_time as imgTime
+			from tb_product as p
+			left join
+			tb_product_img as pi
+			on p.product_id = pi.product_id
+			where product_id= #{productid}
+			order by
+			pi.level desc
+		</select>
+		
+		<update id="modifyProduct" parameterType="com.csy.o2o.entity.Product">
+			update tb_product
+			<set>
+				<if test="productname != null">product_name=#{productname}</if>
+				<if test="productdesc != null">product_desc=#{productdesc}</if>
+				<if test="imgAddr != null">img_addr =#{imgAddr}</if>
+				<if test="normalprice != null">normal_price=#{normalprice}</if>
+				<if test="promotionprice != null">promotion_price=#{promotionprice}</if>
+				<if test="level != null">level=#{level}</if>
+				<if test="createTime != null">create_time=#{createTime}</if>
+				<if test="updateTime != null">update_time=#{updateTime}</if>
+				<if test="enableStatus != null">enable_status=#{enableStatus}</if>
+				<if test="productCategory != null">product_category_id=#{productCategory.productcategoryid}</if>
+				<if test="shop !=null ">shop_id=#{shop.shopid}</if>
+			</set>
+			where product_id = #{productid}
+		</update>
+		
+		<select id="queryProductList" resultType="com.csy.o2o.entity.Product">
+			select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level
+			,create_time,update_time,enable_status,product_category_id,shop_id from tb_product 
+			where
+			<where>
+				<if test="productCondition.productCategory!=null and productCondition.productCategory.productCategoryid!=null">
+					and product_category_id=#{productCondition.productCategory.productCategoryid}
+				</if>
+				<if test="productCondition.shop!=null and productCondition.shop.shopid!=null">
+					and shop_id =#{productCondition.shop.shopid}
+				</if>
+				<if test="productCondition.productname!=null">
+					and product_name like '%#{productCondition.productname}%'
+				</if>
+				<if test="productCondition.enableStatus != null">
+					and enable_status =#{productCondition.enableStatus}
+				</if>
+			</where>
+			 order by
+			 level desc
+			 limit #{rowIndex},#{pageSize};
+		</select>
+		
+		<select id="quertCountOfProduct"  resultType="int">
+			select count(1) from 
+			tb_product p
+			,tb_product_category pc
+			,tb_shop s
+			<where>
+				<if test="productCondition.productCategory!=null and productCondition.productCategory.productCategoryid != null">
+					and p.product_category_id =#{productCondition.productCategory.productCategoryid}
+				</if>
+				<if test="productCondition.productCategory!=null and productCondition.productCategory.productCategoryname!=null">
+					and pc.product_category_name like '%#{productCondition.productCategory.productCategoryname}%'
+				</if>
+				<if test="productCondition.shop!=null and productCondition.shop.shopid != null">
+					and p.shop_id =#{productCondition.shop.shopid}
+				</if>
+				<if test="productCondition.shop!=null and productCondition.shop.shopname != null">
+					and s.shop_name like '%#{productCondition.shop.shopname}%'
+				</if>
+				<if test="productCondition.productname != null">
+					and p.product_name like '%#{productCondition.productname}%'
+				</if>
+				<if test="productCondition.enableStatus!=null">
+					and p.enable_status = #{productCondition.enableStatus}
+				</if>
+			</where>
+			and p.product_category_id = pc.product_category_id
+			and p.shop_id = s.shop_id
+		</select>
     </mapper>

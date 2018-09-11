@@ -8,6 +8,11 @@ public enum ProductStateEnum {
 
 	private String stateInfo;
 	
+	private ProductStateEnum(ProductStateEnum pse) {
+		this.state = pse.state;
+		this.stateInfo = pse.stateInfo;
+	}
+	
 	private ProductStateEnum(int state,String stateInfo) {
 		this.state = state;
 		this.stateInfo = stateInfo;

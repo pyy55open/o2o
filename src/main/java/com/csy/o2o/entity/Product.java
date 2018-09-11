@@ -13,9 +13,9 @@ public class Product {
 	private Integer level;
 	private Date createTime;
 	private Date updateTime;
-	//0ÏÂ¼Ü  1Õý³£
+	//0ï¿½Â¼ï¿½  1ï¿½ï¿½
 	private Integer enableStatus;
-	private List<ProductImg> productImglist;
+	private List<ProductImg> productImgList;
 	private ProductCategory productCategory;
 	private Shop shop;
 	public Long getProductid() {
@@ -78,11 +78,11 @@ public class Product {
 	public void setEnableStatus(Integer enableStatus) {
 		this.enableStatus = enableStatus;
 	}
-	public List<ProductImg> getProductImglist() {
-		return productImglist;
+	public List<ProductImg> getProductImgList() {
+		return productImgList;
 	}
-	public void setProductImglist(List<ProductImg> productImglist) {
-		this.productImglist = productImglist;
+	public void setProductImgList(List<ProductImg> productImgList) {
+		this.productImgList = productImgList;
 	}
 	public ProductCategory getProductCategory() {
 		return productCategory;
