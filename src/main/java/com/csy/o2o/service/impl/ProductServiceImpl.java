@@ -120,7 +120,6 @@ public class ProductServiceImpl implements ProductService{
 	public ProductExcution modifyProduct(Product product, ImgHolder ih, List<ImgHolder> ihList)
 			throws ProductOperationException {
 		if(product != null){
-			product.setCreateTime(new Date());
 			product.setUpdateTime(new Date());
 			if(ih.getInputStream() != null){
 				if(product.getImgAddr()!=null){//商品原缩略图删除
@@ -134,6 +133,7 @@ public class ProductServiceImpl implements ProductService{
 				if(piList!=null&&piList.size()>0){//如果有详情图记录，循环删
 					for (int i = 0; i < piList.size(); i++) {
 						ImgUtil.deleteFile(piList.get(i).getImgAddr());
+						productImgDao.deleteProductImgByProductId(piList.get(i).getProductid());
 					}
 				}
 				if(ihList!=null && ihList.size()>0){//如果有图片

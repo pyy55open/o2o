@@ -3,9 +3,9 @@
  */
 $(function(){
 	// 从URL里获取productId参数的值
-	var productId = getQueryString('productId');
+	var productID = getQueryString('productId');
 	// 通过productId获取商品信息的URL
-	var infoUrl = '/o2o/shopadmin/getproductbyid?productId=' + productId;
+	var infoUrl = '/o2o/shopadmin/getproductbyid?productID=' + productID;
 	// 获取当前店铺设定的商品类别列表的URL
 	var categoryUrl = '/o2o/shopadmin/getproductcategorylist';
 	// 更新商品信息的URL
@@ -16,7 +16,7 @@ $(function(){
 	if (productId) {
 		//更新
 		// 若有productId则为编辑操作
-		getInfo(productId);
+		getInfo(productID);
 		isEdit = true;
 	} else {
 		//添加
@@ -101,7 +101,7 @@ $(function(){
 								return !this.selected;
 							}).data('value')
 				};
-				product.productid = productId;
+				product.productID = productID;
 
 				// 获取缩略图文件流
 				var thumbnail = $('#small-img')[0].files[0];
