@@ -15,3 +15,8 @@
 2018-09-12 14:52:56.739 [main] DEBUG com.csy.o2o.dao.ProductDao.setProductCategoryNull - ==>  Preparing: update tb_product set product_category_id = null where product_category_id=? 
 2018-09-12 14:52:56.785 [main] DEBUG com.csy.o2o.dao.ProductDao.setProductCategoryNull - ==> Parameters: 2(Long)
 2018-09-12 14:52:56.796 [main] DEBUG com.csy.o2o.dao.ProductDao.setProductCategoryNull - <==    Updates: 2
+2018-09-12 20:27:02.083 [main] DEBUG com.csy.o2o.dao.HeadLineDao.queryHeadLine - ==>  Preparing: select line_id,line_name,line_link,line_img ,level,enable_status,create_time,update_time from tb_head_line WHERE enable_status = ? order by level desc 
+2018-09-12 20:27:02.169 [main] DEBUG com.csy.o2o.dao.HeadLineDao.queryHeadLine - ==> Parameters: 1(Integer)
+2018-09-12 20:31:36.953 [main] DEBUG com.csy.o2o.dao.HeadLineDao.queryHeadLine - ==>  Preparing: select line_id,line_name,line_link,line_img ,level,enable_status,create_time,update_time from tb_head_line WHERE enable_status = ? order by level desc 
+2018-09-12 20:31:37.024 [main] DEBUG com.csy.o2o.dao.HeadLineDao.queryHeadLine - ==> Parameters: 1(Integer)
+2018-09-12 20:31:37.051 [main] DEBUG com.csy.o2o.dao.HeadLineDao.queryHeadLine - <==      Total: 2
