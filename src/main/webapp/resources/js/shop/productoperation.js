@@ -3,7 +3,7 @@
  */
 $(function(){
 	// 从URL里获取productId参数的值
-	var productID = getQueryString('productId');
+	var productID = getQueryString('productID');
 	// 通过productId获取商品信息的URL
 	var infoUrl = '/o2o/shopadmin/getproductbyid?productID=' + productID;
 	// 获取当前店铺设定的商品类别列表的URL
@@ -13,7 +13,7 @@ $(function(){
 	// 由于商品添加和编辑使用的是同一个页面，
 	// 该标识符用来标明本次是添加还是编辑操作
 	var isEdit = false;
-	if (productId) {
+	if (productID) {
 		//更新
 		// 若有productId则为编辑操作
 		getInfo(productID);
@@ -40,7 +40,7 @@ $(function(){
 									product.promotionprice);
 							// 获取原本的商品类别以及该店铺的所有商品类别列表
 							var optionHtml = '';
-							var optionArr = data.productCategoryList;
+							var optionArr = data.pcList;
 							var optionSelected = product.productCategory.productCategoryid;
 							// 生成前端的HTML商品类别列表，并默认选择编辑前的商品类别
 							optionArr
@@ -56,6 +56,8 @@ $(function(){
 												+ '</option>';
 									});
 							$('#category').html(optionHtml);
+						}else{
+							$.toast(data.msg);
 						}
 					});
 	}
@@ -101,7 +103,7 @@ $(function(){
 								return !this.selected;
 							}).data('value')
 				};
-				product.productID = productID;
+				product.productid = productID;
 
 				// 获取缩略图文件流
 				var thumbnail = $('#small-img')[0].files[0];
@@ -127,7 +129,6 @@ $(function(){
 					return;
 				}
 				formData.append('kaptcha', kaptcha);
-				alert(formData.get("productStr"));
 				// 将数据提交至后台处理相关操作
 				$.ajax({
 					url : productPostUrl,

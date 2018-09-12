@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.runners.Parameterized.Parameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("shopadmin")
 public class ProductManagerController {
 
+	Logger log = LoggerFactory.getLogger(ProductManagerController.class);
+	
 	@Autowired
 	ProductService productService;
 	
@@ -62,7 +66,7 @@ public class ProductManagerController {
 			CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 			//请求中是否存在文件流
 			if(commonsMultipartResolver.isMultipart(request)){
-				ih = handleImg(request, ihList);
+				ih = handleImg(request,ih, ihList);
 			}else{
 				reMap.put("success", false);
 				reMap.put("msg", "图片不能为空。");
@@ -101,14 +105,15 @@ public class ProductManagerController {
 		return reMap;
 	}
 
-	private ImgHolder handleImg(HttpServletRequest request, List<ImgHolder> ihList) throws IOException {
+	private ImgHolder handleImg(HttpServletRequest request,ImgHolder ih, List<ImgHolder> ihList) throws IOException {
 		MultipartHttpServletRequest multipartHttpServletRequest;
-		ImgHolder ih;
 		//取出文件流
 		multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		//取出缩略图
 		CommonsMultipartFile cFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("img");
-		ih = new ImgHolder(cFile.getName(), cFile.getInputStream()); 
+		if(cFile!=null){
+			ih = new ImgHolder(cFile.getOriginalFilename(), cFile.getInputStream()); 
+		}
 		//取出详情图list，构建list<imgHolder>
 		for (int i = 0; i < imgMaxCount; i++) {
 			CommonsMultipartFile detailFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("detailImg"+i);
@@ -126,19 +131,34 @@ public class ProductManagerController {
 	@ResponseBody
 	public Map<String, Object> getProductList(HttpServletRequest request){
 		Map<String, Object> reMap = new HashMap<String,Object>();
-		Product product = new Product();
-		Shop shop = new Shop();
-		shop.setShopid(2L);
-		product.setShop(shop);
+		Shop shop = (Shop) request.getSession().getAttribute("currentShop");
+		//页面传来的页码
+		int pageIndex = HttpServletRequestUtil.getInt(request, "pageIndex");
+		//页面传来的页面条数
+		int pageSize = HttpServletRequestUtil.getInt(request, "pageSize");
 		try{
-			ProductExcution productExcution = productService.queryProductOfShop(product, 0, 100);
-			if(productExcution!=null && productExcution.getProductlist().size()>0){
-				reMap.put("productList", productExcution.getProductlist());
-				reMap.put("success", true);
-			}else{
-				reMap.put("success", true);
-				reMap.put("productList", productExcution.getProductlist());
-				reMap.put("msg", "该店铺没有商品");
+			if(pageIndex>-1&&pageSize>-1&&shop!=null){
+				Long productCategoryID = HttpServletRequestUtil.getLong(request, "productCategoryID");
+				String productName = HttpServletRequestUtil.getString(request, "productName");
+				Product product = new Product();
+				ProductCategory productCategory =new ProductCategory();
+				if(productCategoryID>-1){
+					productCategory.setShopid(shop.getShopid());
+				}
+				if(productName!=null){
+					product.setProductname(productName);
+				}
+				product.setProductCategory(productCategory);
+				ProductExcution productExcution = productService.queryProductOfShop(product, pageIndex, pageSize);
+				if(productExcution!=null && productExcution.getProductlist().size()>0){
+					reMap.put("productList", productExcution.getProductlist());
+					reMap.put("count", productExcution.getCount());
+					reMap.put("success", true);
+				}else{
+					reMap.put("success", true);
+					reMap.put("productList", productExcution.getProductlist());
+					reMap.put("msg", "该店铺没有商品");
+				}
 			}
 		}catch(Exception e){
 			reMap.put("success", false);
@@ -152,16 +172,11 @@ public class ProductManagerController {
 	public Map<String, Object> getProductByID(@RequestParam Long productID){
 		Map<String, Object> reMap = new HashMap<String,Object>();
 		if(productID>-1){
-			try{
 				Product product = productService.queryByProductID(productID);
 				List<ProductCategory> pcList = productCategoryService.getProductCategoryList(product.getShop().getShopid());
 				reMap.put("pcList", pcList);
 				reMap.put("product", product);
 				reMap.put("success", true);
-			}catch(Exception e){
-				reMap.put("success", false);
-				reMap.put("msg", "查询商品信息失败:"+e.getMessage());
-			}
 		}else{
 			reMap.put("success", false);
 			reMap.put("msg", "未查到相关商品信息。");
@@ -173,7 +188,8 @@ public class ProductManagerController {
 	@ResponseBody
 	public Map<String,Object> modifyProduct(HttpServletRequest request){
 		Map<String, Object> reMap = new HashMap<String,Object>();
-		boolean isChange = HttpServletRequestUtil.getBoolean(request, "isChange");
+		boolean isChange = HttpServletRequestUtil.getBoolean(request, "isChange");//页面传来区分是否为变更的标识
+		//如果是变更就跳过验证码
 		if(!isChange&&!KaptchaUtil.checkKaptcha(request)){
 			reMap.put("success", false);
 			reMap.put("msg", "验证码输入有误。");
@@ -188,7 +204,7 @@ public class ProductManagerController {
 				request.getSession().getServletContext());
 		try{
 			if(multipartResolver.isMultipart(request)){
-				holder = handleImg(request, ihList);
+				holder = handleImg(request,holder, ihList);
 			}
 		}catch(Exception e){
 			reMap.put("success", false);
@@ -196,14 +212,17 @@ public class ProductManagerController {
 			return reMap;
 		}
 		try{
+			//request中product对象的json，转成str，objectmapper转成对应实体对象
 			String productStr = HttpServletRequestUtil.getString(request, "productStr");
 			product = mapper.readValue(productStr, Product.class);
 		}catch(Exception e){
 			reMap.put("success", false);
 			reMap.put("msg", "商品更新失败:"+e.getMessage());
+			log.error(e.getMessage());
 			return reMap;
 		}
 		if(product!=null){
+			//获取当前店铺
 			Shop shop = (Shop) request.getSession().getAttribute("currentShop");
 			product.setShop(shop);
 			ProductExcution productExcution = productService.modifyProduct(product, holder, ihList);

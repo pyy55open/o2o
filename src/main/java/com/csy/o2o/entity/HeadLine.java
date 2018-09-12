@@ -9,7 +9,7 @@ public class HeadLine {
 	private String lineLink;
 	private String lineImg;
 	private Integer level;
-	//0 ½ûÖ¹  1Õý³£
+	//0æ— æ•ˆ  1æœ‰æ•ˆ
 	private Integer enablestatus;
 	private Date createTime;
 	private Date updateTime;

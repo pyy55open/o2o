@@ -38,4 +38,11 @@ public interface ProductDao {
 	 * @return
 	 */
 	int quertCountOfProduct(@Param("productCondition")Product product);
+	
+	/**
+	 * 将商品的类别ID置空
+	 * @param productCategoryID
+	 * @return
+	 */
+	int setProductCategoryNull(Long productCategoryID);
 }

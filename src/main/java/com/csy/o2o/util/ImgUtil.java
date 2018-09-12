@@ -100,6 +100,7 @@ public class ImgUtil {
 	}
 
 	private static String getExtension(String fileName) {
+		log.info(fileName);
 		return fileName.substring(fileName.lastIndexOf("."));
 	}
 

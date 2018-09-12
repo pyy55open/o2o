@@ -15,8 +15,8 @@
 			<result column="update_time" property="updateTime" />
 			<result column="enable_status" property="enableStatus" />
     		<association property="productCategory" column="product_category_id"  javaType="com.csy.o2o.entity.ProductCategory">
-    			<id column="product_category_id" property="productcategoryid"/>
-    			<result column="product_category_name" property="productcategoryname"/>
+    			<id column="product_category_id" property="productCategoryid"/>
+    			<result column="product_category_name" property="productCategoryname"/>
     		</association>
     		<association property="shop" column="shop_id"  javaType="com.csy.o2o.entity.Shop">
     			<id column="shop_id" property="shopid"/>
@@ -48,33 +48,33 @@
 		
 		<select id="queryByProductID" resultMap="productMap" parameterType="Long">
 			select p.product_id,p.product_name,p.product_desc,p.img_addr,p.normal_price,p.promotion_price,p.level
-			,p.create_time,p.update_time,p.enable_status,p.product_category_id,p.shop_id,pi.product_img_id
+			,p.create_time,p.update_time,p.enable_status,p.product_Category_id,p.shop_id,pi.product_img_id
 			,pi.img_addr AS detail_img
 			,pi.img_desc
 			,pi.level as imgLevel
 			,pi.create_time as imgTime
-			from tb_product as p
+			from tb_product p
 			left join
-			tb_product_img as pi
+			tb_product_img pi
 			on p.product_id = pi.product_id
-			where product_id= #{productid}
+			where p.product_id= #{productID}
 			order by
-			pi.level desc
+			p.level desc
 		</select>
 		
 		<update id="modifyProduct" parameterType="com.csy.o2o.entity.Product">
 			update tb_product
 			<set>
-				<if test="productname != null">product_name=#{productname}</if>
-				<if test="productdesc != null">product_desc=#{productdesc}</if>
-				<if test="imgAddr != null">img_addr =#{imgAddr}</if>
-				<if test="normalprice != null">normal_price=#{normalprice}</if>
-				<if test="promotionprice != null">promotion_price=#{promotionprice}</if>
-				<if test="level != null">level=#{level}</if>
-				<if test="createTime != null">create_time=#{createTime}</if>
-				<if test="updateTime != null">update_time=#{updateTime}</if>
-				<if test="enableStatus != null">enable_status=#{enableStatus}</if>
-				<if test="productCategory != null">product_category_id=#{productCategory.productcategoryid}</if>
+				<if test="productname != null">product_name=#{productname},</if>
+				<if test="productdesc != null">product_desc=#{productdesc},</if>
+				<if test="imgAddr != null">img_addr =#{imgAddr},</if>
+				<if test="normalprice != null">normal_price=#{normalprice},</if>
+				<if test="promotionprice != null">promotion_price=#{promotionprice},</if>
+				<if test="level != null">level=#{level},</if>
+				<if test="createTime != null">create_time=#{createTime},</if>
+				<if test="updateTime != null">update_time=#{updateTime},</if>
+				<if test="enableStatus != null">enable_status=#{enableStatus},</if>
+				<if test="productCategory != null">product_category_id=#{productCategory.productCategoryid},</if>
 				<if test="shop !=null ">shop_id=#{shop.shopid}</if>
 			</set>
 			where product_id = #{productid}
@@ -83,7 +83,6 @@
 		<select id="queryProductList" resultType="com.csy.o2o.entity.Product">
 			select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level
 			,create_time,update_time,enable_status,product_category_id,shop_id from tb_product 
-			where
 			<where>
 				<if test="productCondition.productCategory!=null and productCondition.productCategory.productCategoryid!=null">
 					and product_category_id=#{productCondition.productCategory.productCategoryid}
@@ -127,8 +126,12 @@
 				<if test="productCondition.enableStatus!=null">
 					and p.enable_status = #{productCondition.enableStatus}
 				</if>
+				and p.product_category_id = pc.product_category_id
+				and p.shop_id = s.shop_id
 			</where>
-			and p.product_category_id = pc.product_category_id
-			and p.shop_id = s.shop_id
 		</select>
+		
+		<update id="setProductCategoryNull" parameterType="Long">
+			update tb_product set product_category_id = null where product_category_id=#{productCategoryid}
+		</update>
     </mapper>

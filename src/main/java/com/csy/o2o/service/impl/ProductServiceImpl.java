@@ -102,17 +102,12 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public ProductExcution queryProductOfShop(Product product,int pageIndex,int pageSize) {
-		// TODO Auto-generated method stub
 		int rowIndex = PageCalculate.calculateRowIndex(pageIndex, pageSize);
 		List<Product> productsList = productDao.queryProductList(product, rowIndex, pageSize);
 		int count =productDao.quertCountOfProduct(product);
 		ProductExcution productExcution = new ProductExcution();
-		if(productsList!=null){
-			productExcution.setProductlist(productsList);
-			productExcution.setCount(count);
-		}else{
-			productExcution.setState(ProductStateEnum.EMPTY_LIST.getState());
-		}
+		productExcution.setProductlist(productsList);
+		productExcution.setCount(count);
 		return productExcution;
 	}
 
@@ -138,10 +133,8 @@ public class ProductServiceImpl implements ProductService{
 				}
 				if(ihList!=null && ihList.size()>0){//如果有图片
 					addProductImgList(product, ihList);
-				}else{
-					return new ProductExcution(ProductStateEnum.INNER_ERROR);
 				}
-				int num = productDao.addProduct(product);
+				int num = productDao.modifyProduct(product);
 				if(num <=0){
 					return new ProductExcution(ProductStateEnum.INNER_ERROR);
 				}

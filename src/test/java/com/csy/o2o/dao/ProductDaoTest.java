@@ -2,6 +2,8 @@ package com.csy.o2o.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +49,26 @@ public class ProductDaoTest extends BaseTest{
 	}
 	
 	@Test
+	@Ignore
 	public void testQueryByProductID(){
 		Product product =productDao.queryByProductID(1L);
 		assertEquals("哈哈",product.getProductname());
+	}
+	
+	@Test
+	@Ignore
+	public void testQueryProductList(){
+		Product product = new Product();
+		Shop shop = new Shop();
+		shop.setShopid(1L);
+		product.setShop(shop);
+		List<Product> pList = productDao.queryProductList(product, 0, 3);
+		assertEquals(3,pList.size());
+	}
+	
+	@Test
+	public void testSetProductCategoryNull(){
+		int i = productDao.setProductCategoryNull(2L);
+		assertEquals(2,i);
 	}
 }

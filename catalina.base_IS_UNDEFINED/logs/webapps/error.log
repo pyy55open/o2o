@@ -1,55 +1,17 @@
-2018-09-10 16:18:03.161 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018181090880.png=========
-2018-09-10 16:18:03.182 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018181090880.png==========
-2018-09-10 16:18:05.923 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
-2018-09-10 16:18:06.044 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 测试商品添加service(String), null, \upload\2\2018181090880.png(String), null, null, null, 2018-09-10 16:18:03.149(Timestamp), 2018-09-10 16:18:03.149(Timestamp), 1(Integer), 1(Long), 2(Long)
-2018-09-10 16:18:06.131 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - <==    Updates: 1
-2018-09-10 16:18:06.220 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018181049426.jpg=========
-2018-09-10 16:18:06.221 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018181049426.jpg==========
-2018-09-10 16:18:06.438 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018181030079.jpg=========
-2018-09-10 16:18:06.438 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018181030079.jpg==========
-2018-09-10 16:18:06.544 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
-2018-09-10 16:18:06.546 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018181049426.jpg(String), null, null, 2018-09-10 16:18:06.438(Timestamp), 5(Long), \upload\2\2018181030079.jpg(String), null, null, 2018-09-10 16:18:06.495(Timestamp), 5(Long)
-2018-09-10 16:18:06.587 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
-2018-09-10 16:21:20.121 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018211090200.png=========
-2018-09-10 16:21:20.124 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018211090200.png==========
-2018-09-10 16:21:21.040 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
-2018-09-10 16:21:21.284 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 测试商品添加service(String), null, \upload\2\2018211090200.png(String), null, null, null, 2018-09-10 16:21:20.116(Timestamp), 2018-09-10 16:21:20.116(Timestamp), 1(Integer), 1(Long), 2(Long)
-2018-09-10 16:21:21.293 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - <==    Updates: 1
-2018-09-10 16:21:21.331 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018211064687.jpg=========
-2018-09-10 16:21:21.333 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018211064687.jpg==========
-2018-09-10 16:21:21.908 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018211095470.jpg=========
-2018-09-10 16:21:21.909 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018211095470.jpg==========
-2018-09-10 16:21:22.005 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
-2018-09-10 16:21:22.006 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018211064687.jpg(String), null, null, 2018-09-10 16:21:21.908(Timestamp), 6(Long), \upload\2\2018211095470.jpg(String), null, null, 2018-09-10 16:21:21.98(Timestamp), 6(Long)
-2018-09-10 16:21:22.008 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
-2018-09-10 16:23:03.320 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018231073869.png=========
-2018-09-10 16:23:03.324 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018231073869.png==========
-2018-09-10 16:23:03.712 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
-2018-09-10 16:23:03.773 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 测试商品添加service(String), null, \upload\2\2018231073869.png(String), null, null, null, 2018-09-10 16:23:03.311(Timestamp), 2018-09-10 16:23:03.311(Timestamp), 1(Integer), 1(Long), 2(Long)
-2018-09-10 16:23:03.777 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - <==    Updates: 1
-2018-09-10 16:23:03.790 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018231068117.jpg=========
-2018-09-10 16:23:03.792 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018231068117.jpg==========
-2018-09-10 16:23:03.950 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件保存路径 ：\upload\2\2018231081659.jpg=========
-2018-09-10 16:23:03.951 [main] DEBUG com.csy.o2o.util.ImgUtil - ======文件全路径：E:/img\upload\2\2018231081659.jpg==========
-2018-09-10 16:23:04.049 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==>  Preparing: INSERT INTO tb_product_img(img_addr,img_desc,level, create_time,product_id) VALUES ( ?, ?, ?, ?, ? ) , ( ?, ?, ?, ?, ? ) 
-2018-09-10 16:23:04.051 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - ==> Parameters: \upload\2\2018231068117.jpg(String), null, null, 2018-09-10 16:23:03.95(Timestamp), 7(Long), \upload\2\2018231081659.jpg(String), null, null, 2018-09-10 16:23:04.02(Timestamp), 7(Long)
-2018-09-10 16:23:04.054 [main] DEBUG c.csy.o2o.dao.ProductImgDao.batchInsertProductImg - <==    Updates: 2
-2018-09-11 13:31:19.667 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
-2018-09-11 13:31:19.732 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 商品1(String), null, null, 1(String), 1(String), null, null, null, 1(Integer), 1(Long), 2(Long)
-2018-09-11 13:31:19.840 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id, from tb_product where product_id=? 
-2018-09-11 13:31:19.841 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:33:49.017 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==>  Preparing: INSERT INTO tb_product(product_name,product_desc,img_addr, normal_price,promotion_price,level,create_time, update_time,enable_status,product_category_id, shop_id) VALUES (?,?,?, ?,?,?,?, ?,?,?, ?) 
-2018-09-11 13:33:49.074 [main] DEBUG com.csy.o2o.dao.ProductDao.addProduct - ==> Parameters: 商品1(String), null, null, 1(String), 1(String), null, null, null, 1(Integer), 1(Long), 2(Long)
-2018-09-11 13:33:49.173 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id, from tb_product where product_id= ? 
-2018-09-11 13:33:49.174 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:34:33.829 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id, from tb_product where product_id= ? 
-2018-09-11 13:34:33.892 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:35:42.774 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
-2018-09-11 13:35:42.845 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:37:02.350 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
-2018-09-11 13:37:02.418 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:38:00.748 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
-2018-09-11 13:38:00.798 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:40:10.858 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product where product_id= ? 
-2018-09-11 13:40:10.908 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - ==> Parameters: 1(Long)
-2018-09-11 13:40:10.930 [main] DEBUG com.csy.o2o.dao.ProductDao.queryByProductID - <==      Total: 1
+2018-09-12 13:15:03.205 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product where WHERE shop_id =? order by level desc limit ?,?; 
+2018-09-12 13:15:03.303 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==> Parameters: 1(Long), 0(Integer), 100(Integer)
+2018-09-12 13:16:15.197 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product WHERE shop_id =? order by level desc limit ?,?; 
+2018-09-12 13:16:15.255 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==> Parameters: 1(Long), 0(Integer), 100(Integer)
+2018-09-12 13:16:15.276 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - <==      Total: 1
+2018-09-12 13:21:41.893 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product WHERE shop_id =? order by level desc limit ?,?; 
+2018-09-12 13:21:41.947 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==> Parameters: 1(Long), 0(Integer), 2(Integer)
+2018-09-12 13:21:41.968 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - <==      Total: 2
+2018-09-12 13:21:52.585 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product WHERE shop_id =? order by level desc limit ?,?; 
+2018-09-12 13:21:52.667 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==> Parameters: 1(Long), 0(Integer), 3(Integer)
+2018-09-12 13:21:52.691 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - <==      Total: 3
+2018-09-12 13:22:06.969 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==>  Preparing: select product_id,product_name,product_desc,img_addr,normal_price,promotion_price,level ,create_time,update_time,enable_status,product_category_id,shop_id from tb_product WHERE shop_id =? order by level desc limit ?,?; 
+2018-09-12 13:22:07.017 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - ==> Parameters: 1(Long), 0(Integer), 3(Integer)
+2018-09-12 13:22:07.059 [main] DEBUG com.csy.o2o.dao.ProductDao.queryProductList - <==      Total: 3
+2018-09-12 14:52:56.739 [main] DEBUG com.csy.o2o.dao.ProductDao.setProductCategoryNull - ==>  Preparing: update tb_product set product_category_id = null where product_category_id=? 
+2018-09-12 14:52:56.785 [main] DEBUG com.csy.o2o.dao.ProductDao.setProductCategoryNull - ==> Parameters: 2(Long)
+2018-09-12 14:52:56.796 [main] DEBUG com.csy.o2o.dao.ProductDao.setProductCategoryNull - <==    Updates: 2
