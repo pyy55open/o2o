@@ -82,6 +82,13 @@
     			<if test="shopCondition.shopCategory!=null and shopCondition.shopCategory.shopCategoryid!=null">
     				and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryid}
     			</if>
+    			<if test="shopCondition.shopCategory!=null 
+    			and shopCondition.shopCategory.parent!=null
+    			and shopCondition.shopCategory.parent.shopCategoryid!=null">
+    				and s.shop_category_id in (select shop_category_id 
+    				from tb_shop_category 
+    				where parent_id =#{shopCondition.shopCategory.parent.shopCategoryid})
+    			</if>
     			<if test="shopCondition.area!=null and shopCondition.area.areaid!=null">
     				and s.area_id = #{shopCondition.area.areaid}
     			</if>

@@ -172,7 +172,7 @@ public class ShopManagerController {
 			shop.setOwer(owner);
 			ShopException shopException;
 			try {
-				ImgHolder ih = new ImgHolder(cFile.getName(), cFile.getInputStream());
+				ImgHolder ih = new ImgHolder(cFile.getOriginalFilename(), cFile.getInputStream());
 				shopException = shopService.addShop(shop,ih);
 				if(shopException.getState() == ShopEnum.CHECK.getState()){
 					reMap.put("succes", true);
@@ -233,7 +233,7 @@ public class ShopManagerController {
 			ShopException shopException;
 			try {
 				if(cFile != null){
-					ImgHolder ih = new ImgHolder(cFile.getName(), cFile.getInputStream());
+					ImgHolder ih = new ImgHolder(cFile.getOriginalFilename(), cFile.getInputStream());
 					shopException = shopService.addShop(shop,ih);
 				}else{
 					shopException = shopService.addShop(shop,null);

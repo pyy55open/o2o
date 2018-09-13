@@ -87,9 +87,10 @@ public class ProductManagerController {
 				Shop shop = (Shop) request.getSession().getAttribute("currentShop");
 				product.setShop(shop);
 				ProductExcution productExcution = productService.addProduct(product, ih, ihList);
-				if(productExcution.getState()==1){
+				if(productExcution.getState()==ProductStateEnum.SUCCESS.getState()){
 					reMap.put("success", true);
 					reMap.put("msg",productExcution.getStateInfo());
+					log.warn("商品添加成功:"+productExcution.getStateInfo());
 				}else{
 					reMap.put("success", false);
 					reMap.put("msg",productExcution.getStateInfo());
@@ -97,6 +98,7 @@ public class ProductManagerController {
 			}catch(Exception e){
 				reMap.put("success", false);
 				reMap.put("msg","商品添加失败:"+e.getMessage());
+				log.error("添加商品异常:"+e.getMessage());
 			}
 		}else{
 			reMap.put("success", false);
@@ -118,7 +120,7 @@ public class ProductManagerController {
 		for (int i = 0; i < imgMaxCount; i++) {
 			CommonsMultipartFile detailFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("detailImg"+i);
 			if(detailFile!=null){
-				ImgHolder detailHolder = new ImgHolder(detailFile.getName(), detailFile.getInputStream());
+				ImgHolder detailHolder = new ImgHolder(detailFile.getOriginalFilename(), detailFile.getInputStream());
 				ihList.add(detailHolder);
 			}else{
 				break;

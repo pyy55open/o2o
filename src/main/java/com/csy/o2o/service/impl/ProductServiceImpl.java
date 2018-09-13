@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	ProductImgDao productImgDao;
+	
+	Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 	
 	@Override
 	@Transactional
@@ -90,6 +94,7 @@ public class ProductServiceImpl implements ProductService{
 					throw new ProductOperationException("添加商品详情图失败。");
 				}
 			}catch(Exception e){
+				log.error("添加商品详情图异常:"+e.getMessage());
 				throw new ProductOperationException("添加商品详情图失败:"+e.getMessage());
 			}
 		}

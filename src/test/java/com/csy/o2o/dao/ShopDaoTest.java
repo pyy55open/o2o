@@ -24,7 +24,10 @@ public class ShopDaoTest extends BaseTest{
 	public void testQueryShopList(){
 		Shop shop = new Shop();
 		ShopCategory shopCategory = new ShopCategory();
-		shopCategory.setShopCategoryid(1L);
+		ShopCategory parent = new ShopCategory();
+		parent.setShopCategoryid(0L);
+		shopCategory.setShopCategoryid(2L);
+		shopCategory.setParent(parent);
 		shop.setShopCategory(shopCategory);
 		List<Shop> shopList = shopDao.queryShopList(shop, 0, 5);
 		List<Shop> shopList_ = shopDao.queryShopList(shop, 0, 2);

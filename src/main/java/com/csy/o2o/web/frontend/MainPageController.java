@@ -39,6 +39,7 @@ public class MainPageController {
 		try{
 			scList=shopCategoryService.queryShopCategory(null);
 			reMap.put("scList", scList);
+			reMap.put("success", true);
 		}catch(Exception e){
 			reMap.put("success", false);
 			reMap.put("msg", "查询一级店铺类别异常:"+e.getMessage());
