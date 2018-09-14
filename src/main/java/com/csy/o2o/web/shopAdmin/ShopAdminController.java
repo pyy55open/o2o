@@ -33,7 +33,16 @@ public class ShopAdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/productoperation")
-	public String productManagement() {
+	public String productOperation() {
 		return "shop/productoperation";
+	}
+	
+	/**
+	 * 店铺商品列表页面跳转
+	 * @return
+	 */
+	@RequestMapping(value = "/productmanagement")
+	public String productManagement() {
+		return "shop/productmanagement";
 	}
 }

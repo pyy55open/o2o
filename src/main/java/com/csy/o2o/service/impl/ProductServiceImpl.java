@@ -121,32 +121,28 @@ public class ProductServiceImpl implements ProductService{
 			throws ProductOperationException {
 		if(product != null){
 			product.setUpdateTime(new Date());
-			if(ih.getInputStream() != null){
+			if(ih!= null){//处理缩略图
 				if(product.getImgAddr()!=null){//商品原缩略图删除
 					ImgUtil.deleteFile(product.getImgAddr());
 				}
-				String dest = PathUtil.getShopImgPath(product.getShop().getShopid());
-				String imgAddr=ImgUtil.thumbnailImg(ih, dest);
-				product.setImgAddr(imgAddr);
-				//处理商品详情图  1删  2换新
-				List<ProductImg> piList = productImgDao.queryProductImgList(product.getProductid());
-				if(piList!=null&&piList.size()>0){//如果有详情图记录，循环删
-					for (int i = 0; i < piList.size(); i++) {
-						ImgUtil.deleteFile(piList.get(i).getImgAddr());
-						productImgDao.deleteProductImgByProductId(piList.get(i).getProductid());
-					}
+				addProductImg(product,ih);
+			}
+			//处理商品详情图  1删  2换新
+			List<ProductImg> piList = productImgDao.queryProductImgList(product.getProductid());
+			if(piList!=null&&piList.size()>0){//如果有详情图记录，循环删
+				for (int i = 0; i < piList.size(); i++) {
+					ImgUtil.deleteFile(piList.get(i).getImgAddr());
+					productImgDao.deleteProductImgByProductId(piList.get(i).getProductid());
 				}
-				if(ihList!=null && ihList.size()>0){//如果有图片
-					addProductImgList(product, ihList);
-				}
-				int num = productDao.modifyProduct(product);
-				if(num <=0){
-					return new ProductExcution(ProductStateEnum.INNER_ERROR);
-				}
-				return new ProductExcution(ProductStateEnum.SUCCESS, product);
-			}else{
+			}
+			if(ihList!=null && ihList.size()>0){//如果有图片
+				addProductImgList(product, ihList);
+			}
+			int num = productDao.modifyProduct(product);
+			if(num <=0){
 				return new ProductExcution(ProductStateEnum.INNER_ERROR);
 			}
+			return new ProductExcution(ProductStateEnum.SUCCESS, product);
 		}else{
 			return new ProductExcution(ProductStateEnum.EMPTY_LIST);
 		}

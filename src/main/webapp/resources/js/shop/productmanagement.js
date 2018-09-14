@@ -1,6 +1,6 @@
 $(function(){
 	// 获取此店铺下的商品列表的URL
-	var listUrl = '/o2o/shopadmin/getproductbyid?pageIndex=1&pageSize=999';
+	var listUrl = '/o2o/shopadmin/getproductlist?pageIndex=1&pageSize=999';
 	// 商品下架URL
 	var statusUrl = '/o2o/shopadmin/modifyproduct';
 	getList();
@@ -31,26 +31,26 @@ $(function(){
 					// 拼接每件商品的行信息
 					tempHtml += '' + '<div class="row row-product">'
 							+ '<div class="col-33">'
-							+ item.productName
+							+ item.productname
 							+ '</div>'
 							+ '<div class="col-20">'
-							+ item.point
+							+ item.level
 							+ '</div>'
 							+ '<div class="col-40">'
 							+ '<a href="#" class="edit" data-id="'
-							+ item.productId
+							+ item.productid
 							+ '" data-status="'
 							+ item.enableStatus
 							+ '">编辑</a>'
 							+ '<a href="#" class="status" data-id="'
-							+ item.productId
+							+ item.productid
 							+ '" data-status="'
 							+ contraryStatus
 							+ '">'
 							+ textOp
 							+ '</a>'
 							+ '<a href="#" class="preview" data-id="'
-							+ item.productId
+							+ item.productid
 							+ '" data-status="'
 							+ item.enableStatus
 							+ '">预览</a>'
@@ -72,7 +72,7 @@ $(function(){
 						var target = $(e.currentTarget);
 						if (target.hasClass('edit')) {
 							// 如果有class edit则点击就进入店铺信息编辑页面，并带有productId参数
-							window.location.href = '/o2o/shopadmin/productoperation?productId='
+							window.location.href = '/o2o/shopadmin/productoperation?productID='
 									+ e.currentTarget.dataset.id;
 						} else if (target.hasClass('status')) {
 							// 如果有class status则调用后台功能上/下架相关商品，并带有productId参数
@@ -80,7 +80,7 @@ $(function(){
 									e.currentTarget.dataset.status);
 						} else if (target.hasClass('preview')) {
 							// 如果有class preview则去前台展示系统该商品详情页预览商品情况
-							window.location.href = '/o2o/frontend/productdetail?productId='
+							window.location.href = '/o2o/front/productdetail?productID='
 									+ e.currentTarget.dataset.id;
 						}
 					});
@@ -88,7 +88,7 @@ $(function(){
 	function changeItemStatus(id, enableStatus) {
 		// 定义product json对象并添加productId以及状态(上架/下架)
 		var product = {};
-		product.productId = id;
+		product.productid = id;
 		product.enableStatus = enableStatus;
 		$.confirm('确定么?', function() {
 			// 上下架相关商品
