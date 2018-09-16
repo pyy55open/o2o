@@ -10,7 +10,7 @@ public class FontController {
 
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	private String index(){
-		return "/front/index";
+		return "front/index";
 	}
 	
 	/**

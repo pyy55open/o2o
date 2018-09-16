@@ -127,10 +127,4 @@ public class ImgUtil {
 			fileOrpath.delete();
 		}
 	}
-
-	public static void main(String[] args) throws IOException {
-		Thumbnails.of(new File("E:/scar.jpg")).size(200, 200)
-		.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath+"/timg.jpg")), 0.25f)
-		.outputQuality(0.8f).toFile("E:/newscar.jpg");
-	}
 }

@@ -14,6 +14,11 @@ function getQueryString(name) {
 	return '';
 }
 
+/**
+ * 指定时间格式
+ * @param fmt
+ * @returns
+ */
 Date.prototype.Format = function(fmt) {
 	var o = {
 		"M+" : this.getMonth() + 1, // 月份
