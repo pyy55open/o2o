@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.csy.o2o.cache.JedisUtil;
 import com.csy.o2o.dao.ProductCategoryDao;
 import com.csy.o2o.dao.ProductDao;
 import com.csy.o2o.dto.ProductCategoryExcution;
@@ -24,6 +25,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 	
 	@Autowired
 	ProductDao productDao;
+	
+	@Autowired
+	JedisUtil.Keys jedisKeys;
+	
+	@Autowired
+	JedisUtil.Strings jedisStrings;
 	
 	Logger log = LoggerFactory.getLogger(ProductCategoryServiceImpl.class);
 	

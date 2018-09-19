@@ -41,19 +41,16 @@
 		scope="singleton">
 		<constructor-arg ref="jedisUtil"></constructor-arg>
 	</bean>
-	<!-- Redis的Lists操作 -->
-	<bean id="jedisLists" class="com.csy.o2o.cache.JedisUtil$Lists"
+<!--  	<bean id="jedisLists" class="com.csy.o2o.cache.JedisUtil$Lists"
 		scope="singleton">
 		<constructor-arg ref="jedisUtil"></constructor-arg>
 	</bean>
-	<!-- Redis的Sets操作 -->
 	<bean id="jedisSets" class="com.csy.o2o.cache.JedisUtil$Sets"
 		scope="singleton">
 		<constructor-arg ref="jedisUtil"></constructor-arg>
 	</bean>
-	<!-- Redis的HashMap操作 -->
 	<bean id="jedisHash" class="com.csy.o2o.cache.JedisUtil$Hash"
 		scope="singleton">
 		<constructor-arg ref="jedisUtil"></constructor-arg>
-	</bean>
+	</bean> -->
 </beans>    

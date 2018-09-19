@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.csy.o2o.cache.JedisUtil;
 import com.csy.o2o.dao.AreaDao;
@@ -27,15 +28,14 @@ public class AreaServiceImpl implements AreaService{
 	AreaDao areaDao;
 	
 	@Autowired
-	JedisUtil.Keys jedisKeys;
+	private JedisUtil.Keys jedisKeys;
 	
 	@Autowired
-	JedisUtil.Strings jedisStrings;
-	
-	private String AREALISTKEY = "arealist";
+	private JedisUtil.Strings jedisStrings;
 	
 	private Logger log = LoggerFactory.getLogger(AreaServiceImpl.class);
 	
+	@Transactional
 	public List<Area> getArea() {
 		String keys = AREALISTKEY;
 		List<Area> areaList = null;
