@@ -99,7 +99,7 @@ $(function(){
 					if(data.success){
 						$.toast("提交成功");
 					}else{
-						$.toast("提交失败",data.errorMsg);
+						$.toast("提交失败",data.msg);
 					}
 					$("#kaptcha_img").click();
 				}

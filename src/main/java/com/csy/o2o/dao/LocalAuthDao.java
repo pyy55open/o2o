@@ -1,5 +1,7 @@
 package com.csy.o2o.dao;
 
+import java.util.Date;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.csy.o2o.entity.LocalAuth;
@@ -20,7 +22,7 @@ public interface LocalAuthDao {
 	 * @param userID
 	 * @return
 	 */
-	LocalAuth queryByID(@Param("userID")String userID);
+	LocalAuth queryByID(@Param("userID")Long userID);
 	
 	/**
 	 * 注册用户
@@ -37,6 +39,6 @@ public interface LocalAuthDao {
 	 * @param newPassword
 	 * @return
 	 */
-	int updatePasswd(@Param("userID")String userID,@Param("name")String name
-			,@Param("password")String password,@Param("newPassword")String newPassword);
+	int updatePasswd(@Param("userID")Long userID,@Param("name")String name
+			,@Param("password")String password,@Param("newPassword")String newPassword,@Param("updateTime")Date updateTime);
 }

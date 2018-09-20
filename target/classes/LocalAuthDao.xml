@@ -5,10 +5,10 @@
     <mapper namespace="com.csy.o2o.dao.LocalAuthDao">
     	<resultMap id="localAuthResultMap" type="com.csy.o2o.entity.LocalAuth">
     		<id column="local_auth_id" property="localAuthid"/>
-    		<result column="" property="name"/>
-    		<result column="" property="password"/>
-    		<result column="" property="createTime"/>
-    		<result column="" property="updateTime"/>
+    		<result column="user_name" property="name"/>
+    		<result column="password" property="password"/>
+    		<result column="create_time" property="createTime"/>
+    		<result column="update_time" property="updateTime"/>
     		<association property="personInfo" column="user_id" javaType="com.csy.o2o.entity.PersonInfo">
     			<id column="user_id" property="userid"/>
     			<result column="user_name" property="name"/>
@@ -28,7 +28,7 @@
     		,pi.update_time 
     		from tb_local_auth la 
     		left join tb_person_info pi 
-    		on la.user_id=pi.uer_id
+    		on la.user_id=pi.user_id
     		where la.user_name=#{name} and la.password=#{password}
     	</select>
     	
@@ -38,7 +38,7 @@
     		,pi.update_time 
     		from tb_local_auth la 
     		left join tb_person_info pi 
-    		on la.user_id=pi.uer_id
+    		on la.user_id=pi.user_id
     		where la.user_id=#{userID}
     	</select>
     	
@@ -52,7 +52,7 @@
     	<update id="updatePasswd">
     		update tb_local_auth 
     		<set>
-    			<if test="newPassword != null">password =#{newPassword}</if>
+    			<if test="newPassword != null">password =#{newPassword},</if>
     			<if test="updateTime != null">update_time=#{updateTime}</if>
     		</set>
     		where user_id =#{userID} and user_name=#{name} and password=#{password}
