@@ -76,11 +76,7 @@ public class ShopManagerController {
 	@ResponseBody
 	public Map<String,Object> getShopList(HttpServletRequest request){
 		Map<String,Object> reMap = new HashMap<String,Object>();
-		PersonInfo owner = new PersonInfo();
-		owner.setUserid(1L);
-		owner.setName("哈哈哈");
-		request.getSession().setAttribute("user", owner);
-		owner = (PersonInfo) request.getSession().getAttribute("user");
+		PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
 		Shop shop = new Shop();
 		shop.setOwer(owner);
 		try{
